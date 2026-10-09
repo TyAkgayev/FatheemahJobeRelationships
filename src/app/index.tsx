@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { Link, type Href } from 'expo-router';
 import { colors, fonts, useBreakpoint } from '@/theme';
 import { contact } from '@/content';
-import { Button } from '@/components/Button';
+import { Button, ButtonRow } from '@/components/Button';
 import { Body, Eyebrow, H1, H2, Page, Section } from '@/components/Layout';
 import { ConnectingShape, GroundingShape } from '@/components/Shapes';
 import { CtaBlock } from '@/components/CtaBlock';
@@ -23,10 +23,10 @@ export default function Home() {
               Therapy. I'm committed to providing an empowering, supportive, and safe space for individuals,
               couples and families navigating a wide range of relational, individual and sexual challenges.
             </Body>
-            <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
+            <ButtonRow style={{ marginTop: 6 }}>
               <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} size="lg" />
               <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outline" size="lg" />
-            </View>
+            </ButtonRow>
           </View>
 
           <View style={[styles.portraitWrap, { flex: isPhone ? undefined : 1 }]}>
@@ -53,14 +53,14 @@ export default function Home() {
             shape={<GroundingShape />}
             heading="For Individuals"
             text="Anxiety, depression, PTSD, and low mood. Let's get your nervous system out of survival mode and reclaim your daily momentum."
-            linkLabel="Learn about Individual Support →"
+            linkLabel={"Learn about Individual Support\u00A0→"}
             href="/services?section=individual"
           />
           <RouteCard
             shape={<ConnectingShape />}
             heading="For Couples & Families"
             text="Marriage friction, family systems, and sexual/intimacy issues. Open, comfortable, and shame-free solutions for your home."
-            linkLabel="Learn about Relationship Support →"
+            linkLabel={"Learn about Relationship Support\u00A0→"}
             href="/services?section=relationships"
           />
         </View>
@@ -101,7 +101,6 @@ function RouteCard(props: { shape: React.ReactNode; heading: string; text: strin
 
 const styles = StyleSheet.create({
   hero: { gap: 36, alignItems: 'center' },
-  btnRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 6 },
   portraitWrap: { alignItems: 'center', gap: 4 },
   ring: {
     borderRadius: 999,

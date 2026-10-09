@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fonts, useBreakpoint } from '@/theme';
 import { contact } from '@/content';
-import { Button, openHref } from '@/components/Button';
+import { Button, ButtonRow, openHref } from '@/components/Button';
 import { Body, Eyebrow, H1, Page, Section } from '@/components/Layout';
 
 const METHODS = [
@@ -25,15 +25,15 @@ export default function Contact() {
             Have you ever had a therapist available 24/7? Call or text me at {contact.phoneDisplay} to get
             started, or reach out any way that feels comfortable.
           </Body>
-          <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
+          <ButtonRow style={{ marginTop: 8 }}>
             <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} size="lg" />
             <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outline" size="lg" />
-          </View>
+          </ButtonRow>
         </View>
       </Section>
 
       <Section>
-        <View style={[styles.grid, { flexDirection: isPhone ? 'column' : 'row' }]}>
+        <View style={[styles.grid, isPhone ? { flexDirection: 'column' } : { flexDirection: 'row', flexWrap: 'wrap' }]}>
           {METHODS.map((m) => (
             <Pressable
               key={m.label}
@@ -46,7 +46,7 @@ export default function Contact() {
               ]}
             >
               <Text style={styles.cardLabel}>{m.label}</Text>
-              <Text style={styles.cardValue}>{m.value}</Text>
+              <Text style={[styles.cardValue, isPhone && { fontSize: 15 }]}>{m.value}</Text>
             </Pressable>
           ))}
         </View>
@@ -61,8 +61,7 @@ export default function Contact() {
 }
 
 const styles = StyleSheet.create({
-  btnRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 8 },
-  grid: { flexWrap: 'wrap', gap: 16 },
+  grid: { gap: 16 },
   card: {
     backgroundColor: colors.white,
     borderRadius: 18,

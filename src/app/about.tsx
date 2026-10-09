@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors, fonts, useBreakpoint } from '@/theme';
 import { contact } from '@/content';
-import { Button } from '@/components/Button';
+import { Button, ButtonRow } from '@/components/Button';
 import { Body, Eyebrow, H1, H2, Page, Section } from '@/components/Layout';
 import { CtaBlock } from '@/components/CtaBlock';
 
@@ -59,10 +59,10 @@ export default function About() {
           ))}
         </View>
 
-        <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
+        <ButtonRow style={{ marginTop: 32 }}>
           <Button label="Explore Services" href="/services" variant="indigo" />
           <Button label={`Call or Text ${contact.phoneDisplay}`} href={contact.phoneHref} />
-        </View>
+        </ButtonRow>
       </Section>
 
       <CtaBlock />
@@ -77,5 +77,4 @@ const styles = StyleSheet.create({
   pillars: { gap: 16, marginTop: 36 },
   pillar: { backgroundColor: colors.indigo, borderRadius: 20, padding: 24, gap: 8 },
   pillarTitle: { fontFamily: fonts.black, color: colors.marigold, fontSize: 19 },
-  btnRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 32 },
 });

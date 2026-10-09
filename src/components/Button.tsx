@@ -1,6 +1,7 @@
-import { Linking, Pressable, StyleSheet, Text, ViewStyle } from 'react-native';
+import type { ReactNode } from 'react';
+import { Linking, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { router, type Href } from 'expo-router';
-import { colors, fonts } from '@/theme';
+import { colors, fonts, useBreakpoint } from '@/theme';
 
 type Props = {
   label: string;
@@ -41,7 +42,29 @@ export function Button({ label, href, variant = 'marigold', size = 'md', style }
   );
 }
 
+/**
+ * Side-by-side buttons on wide screens; full-width stack on phones.
+ * (A wrapping row can't stretch its children, so phones get a plain column.)
+ */
+export function ButtonRow({ children, center, style }: { children: ReactNode; center?: boolean; style?: ViewStyle }) {
+  const { isPhone } = useBreakpoint();
+  return (
+    <View
+      style={[
+        styles.row,
+        isPhone
+          ? { flexDirection: 'column', alignSelf: 'stretch', alignItems: 'stretch' }
+          : { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: center ? 'center' : 'flex-start' },
+        style,
+      ]}
+    >
+      {children}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  row: { gap: 12 },
   base: {
     borderRadius: 999,
     alignItems: 'center',

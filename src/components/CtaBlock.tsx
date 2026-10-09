@@ -14,21 +14,12 @@ export function CtaBlock() {
           Ready to change the narrative?
         </Text>
         <Text style={styles.text}>
-          You don't have to stay stuck in the same exhausting patterns. Let's get to work. Book a brief,
-          no-pressure consultation today.
+          You don't have to stay stuck in the same exhausting patterns. Let's get to work. Call or text me
+          today at {contact.phoneDisplay}.
         </Text>
-        <Button
-          label="For a free 15-minute consultation click here"
-          href={contact.consultationHref}
-          size="lg"
-          style={{ alignSelf: isPhone ? 'stretch' : 'center', marginTop: 8 }}
-        />
-        <View style={[styles.row, { flexDirection: isPhone ? 'column' : 'row' }]}>
-          <Text style={styles.or}>Or call or text</Text>
-          <View style={styles.row}>
-            <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} variant="outlineLight" size="sm" />
-            <Button label="Text" href={contact.smsHref} variant="outlineLight" size="sm" />
-          </View>
+        <View style={[styles.row, isPhone && { flexDirection: 'column', alignSelf: 'stretch', alignItems: 'stretch' }]}>
+          <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} size="lg" />
+          <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outlineLight" size="lg" />
         </View>
       </View>
     </Section>
@@ -51,6 +42,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     maxWidth: 640,
   },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10, flexWrap: 'wrap', justifyContent: 'center' },
-  or: { fontFamily: fonts.semibold, color: colors.white, fontSize: 15 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 },
 });

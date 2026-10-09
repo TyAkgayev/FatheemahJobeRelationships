@@ -63,7 +63,7 @@ export function Header() {
                 </View>
               ))}
             </View>
-            <Button label="Book a Consultation" href={contact.consultationHref} size="sm" />
+            <Button label={`Call or Text ${contact.phoneDisplay}`} href={contact.phoneHref} size="sm" />
           </>
         )}
       </View>
@@ -80,7 +80,10 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Button label="Book a Consultation" href={contact.consultationHref} style={{ marginTop: 12 }} />
+          <View style={styles.drawerBtns}>
+            <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} />
+            <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outline" />
+          </View>
         </View>
       )}
     </View>
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.line,
   },
+  drawerBtns: { gap: 10, marginTop: 14 },
   drawerLink: {
     fontFamily: fonts.bold,
     color: colors.indigo,

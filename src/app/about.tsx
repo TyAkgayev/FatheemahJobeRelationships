@@ -61,7 +61,7 @@ export default function About() {
 
         <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
           <Button label="Explore Services" href="/services" variant="indigo" />
-          <Button label="Book a Consultation" href={contact.consultationHref} />
+          <Button label={`Call or Text ${contact.phoneDisplay}`} href={contact.phoneHref} />
         </View>
       </Section>
 

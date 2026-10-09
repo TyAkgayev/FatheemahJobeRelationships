@@ -22,15 +22,13 @@ export default function Contact() {
           <Eyebrow>Contact</Eyebrow>
           <H1>Let's get to work.</H1>
           <Body>
-            Have you ever had a therapist available 24/7? Reach out any way that feels comfortable—start with a
-            free, no-pressure 15-minute consultation.
+            Have you ever had a therapist available 24/7? Call or text me at {contact.phoneDisplay} to get
+            started, or reach out any way that feels comfortable.
           </Body>
-          <Button
-            label="For a free 15-minute consultation click here"
-            href={contact.consultationHref}
-            size="lg"
-            style={{ alignSelf: isPhone ? 'stretch' : 'flex-start', marginTop: 8 }}
-          />
+          <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
+            <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} size="lg" />
+            <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outline" size="lg" />
+          </View>
         </View>
       </Section>
 
@@ -63,6 +61,7 @@ export default function Contact() {
 }
 
 const styles = StyleSheet.create({
+  btnRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 8 },
   grid: { flexWrap: 'wrap', gap: 16 },
   card: {
     backgroundColor: colors.white,

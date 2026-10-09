@@ -24,8 +24,8 @@ export default function Home() {
               couples and families navigating a wide range of relational, individual and sexual challenges.
             </Body>
             <View style={[styles.btnRow, isPhone && { flexDirection: 'column', alignItems: 'stretch' }]}>
-              <Button label="Book a Free 15-Min Consultation" href={contact.consultationHref} size="lg" />
-              <Button label={`Call or Text ${contact.phoneDisplay}`} href={contact.phoneHref} variant="outline" size="lg" />
+              <Button label={`Call ${contact.phoneDisplay}`} href={contact.phoneHref} size="lg" />
+              <Button label={`Text ${contact.phoneDisplay}`} href={contact.smsHref} variant="outline" size="lg" />
             </View>
           </View>
 
